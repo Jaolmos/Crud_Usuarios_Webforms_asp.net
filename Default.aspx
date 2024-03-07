@@ -51,6 +51,7 @@
       </div>
       <div class="modal-body">
         <p>Hola programador!!!</p>
+          <p>holaaaaa</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
