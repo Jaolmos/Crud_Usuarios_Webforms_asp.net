@@ -6,10 +6,61 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Registro usuarios</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <%--<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
+    <script>
+        function crearModal(texto) {
+            var modalHTML = '<div id="miModalDinamico" class="modal fade" role="dialog">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+                '<h4 class="modal-title">Mensaje</h4>' +
+                '</div>' +
+                '<div class="modal-body">' +
+                '<p>' + texto + '</p>' +
+                '</div>' +
+                '<div class="modal-footer">' +
+                '<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+            $('body').append(modalHTML);
+            $('#miModalDinamico').modal('show');
+
+            // Eliminar el modal del DOM al ocultarse
+            $('#miModalDinamico').on('hidden.bs.modal', function () {
+                $('#miModalDinamico').remove();
+            });
+        }
+
+    </script>
 </head>
 <body>
+   <div id="miMensajeModal" class="modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: lightblue;">
+        <h5 class="modal-title">Título del Modal</h5>
+        <!-- Botón para cerrar eliminado -->
+      </div>
+      <div class="modal-body">
+        <p>Hola programador!!!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+        <!-- Otros botones de acción si es necesario -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <form id="form1" runat="server">
 
         <div class="container mt-5">
@@ -82,5 +133,7 @@
             </div>
         </div>
     </form>
+    
+    
 </body>
 </html>

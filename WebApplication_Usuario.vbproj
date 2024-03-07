@@ -97,6 +97,7 @@
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Estilos\Custom.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>

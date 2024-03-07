@@ -5,6 +5,28 @@ Public Class _Default
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
+
+            If Not esMensajeInicial Then
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "mostrarModal", "$('#miMensajeModal').modal('show');", True)
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "setStaticBackdrop", "$('#miMensajeModal').data('bs.modal')._config.backdrop = 'static';", True)
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "mostrarModalYSetStaticBackdrop", "$('#miMensajeModal').modal('show'); $('#miMensajeModal').data('bs.modal')._config.backdrop = 'static';", True)
+
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "mostrarModal", "$('#miMensajeModal').modal({ show: true, backdrop: 'static', keyboard: false });", True)
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "setStaticBackdrop", "$('#miMensajeModal').modal({show: true, backdrop: 'static', keyboard: false});", True)
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "setStaticBackdrop", "$('#miMensajeModal').modal({backdrop: 'static', keyboard: false});", True)
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "setStaticBackdrop", "var myModal = new bootstrap.Modal(document.getElementById('miMensajeModal')); myModal._config.backdrop = 'static';", True)
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "mostrarModal", "var myModal = new bootstrap.Modal(document.getElementById('miMensajeModal'), {backdrop: 'static'}); myModal.show();", True)
+                ''ScriptManager.RegisterStartupScript(Me, Me.GetType(), "mostrarModalDinamico", "crearModal('Este es el mensaje que quiero mostrar en el modal.');", True)
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "setStaticBackdrop", "$(document).ready(function() { $('#miModalDinamico').modal({ backdrop: 'static', keyboard: false }); });", True)
+                ''ScriptManager.RegisterStartupScript(Me, Me.GetType(), "setStaticBackdrop", "$('#miModalDinamico').data('bs.modal')._config.backdrop = 'static';", True)
+
+
+
+                'ScriptManager.RegisterStartupScript(Me, Me.GetType(), "modalScript", "crearModal('Este es el mensaje que quiero mostrar en el modal.'); $('#miModalDinamico').data('bs.modal')._config.backdrop = 'static';", True)
+                esMensajeInicial = True
+
+
+            End If
             CargarUsuarios()
         End If
     End Sub
@@ -134,4 +156,18 @@ Public Class _Default
             Response.Write($"Error al actualizar usuario: {ex.Message}")
         End Try
     End Sub
+
+    'Propiedad de sesión para el mensaje inicial
+    Public Property esMensajeInicial As Boolean
+        Get
+            If Session("esMensajeInicial") IsNot Nothing Then
+                Return DirectCast(Session("esMensajeInicial"), Boolean)
+            Else
+                Return False ' O devuelve el valor que desees por defecto si la sesión no está establecida
+            End If
+        End Get
+        Set(value As Boolean)
+            Session("esMensajeInicial") = value
+        End Set
+    End Property
 End Class
