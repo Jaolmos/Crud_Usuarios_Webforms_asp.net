@@ -23,6 +23,7 @@ Public Class Login
                 End With
             End Using
             If count > 0 Then
+                Session("Usuario") = username
                 Response.Redirect("Default.aspx")
             Else
                 lblMensajeError.Text = "Nombre de usuario o contraseña incorrecta."
